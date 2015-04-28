@@ -13,8 +13,8 @@ module ValueGraphTransformation
       @edges = []
     end
 
-    # Creates a new vertex with optional meta object associated to it, and adds it to
-    # the graph.
+    # Creates a new vertex with the optional meta object associated to it, and adds
+    # it to the graph.
     #
     # @param meta [Object] the meta object to associate with the new vertex.
     # @return [Vertex] the newly created Vertex.
