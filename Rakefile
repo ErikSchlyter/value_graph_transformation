@@ -10,7 +10,7 @@ end
 desc "Execute RSpec with HTML formatter"
 # RSpec - HTML output
 RSpec::Core::RakeTask.new(:html_spec) do |t|
-  t.rspec_opts = "--format RSpec::Formatters::IllustratedHtmlFormatter --out ./doc/rspec-results.html"
+  t.rspec_opts = "spec/spec_helper.rb --format RSpec::Formatters::IllustratedHtmlFormatter --out ./doc/rspec-results.html"
 end
 
 desc "Generate API documentation."

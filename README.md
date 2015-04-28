@@ -19,6 +19,9 @@ Or install it yourself as:
 
     $ gem install value_graph_transformation
 
+To generate diagrams for the specs in HTML format (`rake doc`) you also need to
+install Graphviz[http://www.graphviz.org].
+
 ## Usage
 
 Not finished as of yet.

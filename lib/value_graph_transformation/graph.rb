@@ -59,5 +59,23 @@ module ValueGraphTransformation
       edge.target = nil
     end
 
+    # @return [String] the graph in DOT format.
+    def to_dot
+      nodes = {}
+      @vertices.each_with_index{|vertex, index| nodes[vertex] = "n#{index}" }
+
+      dot = "digraph {\n"
+
+      dot << nodes.collect{|vertex, id|
+        "\t#{id} [label=\"#{vertex.meta.to_s}\"]"
+      }.join("\n") << "\n"
+
+      dot << @edges.collect{|edge|
+        "\t#{nodes[edge.source]}->#{nodes[edge.target]} [label=\"#{edge.meta.to_s}\"]"
+      }.join("\n")
+
+      dot << "\n}\n"
+    end
+
   end
 end

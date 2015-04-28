@@ -88,6 +88,27 @@ module ValueGraphTransformation
       end
     end
 
+    describe "#to_dot" do
+
+      it "should return a String in valid dot format" do
+        graph = Graph.new
+        a = graph.add('a node')
+        b = graph.add('another node')
+        c = graph.add
+
+        graph.connect(a, b, "Hello")
+        graph.connect(a, b, "World!")
+        graph.connect(c, a)
+        graph.connect(a, c)
+
+        dot = graph.to_dot
+        expect(dot).to be_a(String)
+
+        illustrate dot
+      end
+
+    end
+
   end
 end
 
