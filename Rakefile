@@ -15,9 +15,7 @@ end
 
 desc "Generate API documentation."
 require 'yard'
-YARD::Rake::YardocTask.new(:doc) do |t|
-  t.files   = ['lib/**/*.rb', '-', 'doc/rspec-results.html' ]
-end
+YARD::Rake::YardocTask.new(:doc)
 task :doc => [:html_spec]
 
 
