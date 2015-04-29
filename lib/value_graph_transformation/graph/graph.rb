@@ -56,14 +56,22 @@ module ValueGraphTransformation::Graph
       edge.target = nil
     end
 
-    # @return [String] the graph in DOT format.
-    def to_dot
+    # @param properties [String] optional dot properties to include in the digraph
+    #                            statement.
+    # @param selected_vertices [Array<Vertex>] an optional array of selected
+    #                                          vertices.
+    # @return [String] the graph in dot code.
+    def to_dot(properties="", selected_vertices=[])
       nodes = {}
       @vertices.each_with_index{|vertex, index| nodes[vertex] = "#{index}" }
 
-      dot = "digraph {\n"
+      dot = "digraph {#{properties} \n"
 
-      dot << nodes.values.collect{|id| "\t#{id}\n"}.join
+      dot << nodes.collect{|vertex, id|
+        selected = selected_vertices.include?(vertex)
+        properties = vertex.respond_to?(:to_dot) ? vertex.to_dot(selected) : ""
+        "\t#{id} #{properties}\n"
+      }.join
 
       dot << @edges.collect{|edge|
         "\t#{nodes[edge.source]}->#{nodes[edge.target]}"
