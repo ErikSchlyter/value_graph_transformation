@@ -46,11 +46,9 @@ module ValueGraphTransformation
       Arithmetic.apply(self, &arithmetic)
     end
 
-    # @param selected_vertices [Array<Vertex>] an optional array of selected
-    #                                          vertices.
     # return [String] the context in dot code.
-    def to_dot(selected_vertices=[])
-      super("rankdir=\"LR\"; dpi=\"55\" node [style=\"filled\"]", selected_vertices)
+    def to_dot
+      DotCompiler.new(self).to_s
     end
   end
 end
