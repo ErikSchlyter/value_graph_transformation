@@ -1,4 +1,4 @@
-module ValueGraphTransformation
+module ValueGraphTransformation::Graph
 
   # A vertex in the graph.
   class Vertex

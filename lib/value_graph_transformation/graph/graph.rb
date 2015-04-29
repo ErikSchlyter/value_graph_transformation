@@ -1,4 +1,6 @@
-module ValueGraphTransformation
+
+# A directed Graph
+module ValueGraphTransformation::Graph
 
   # A directed Graph
   class Graph

@@ -1,7 +1,7 @@
 require 'rspec/illustrate'
 require 'value_graph_transformation'
 
-module ValueGraphTransformation
+module ValueGraphTransformation::Graph
 
   describe Graph do
     let!(:graph) { Graph.new }

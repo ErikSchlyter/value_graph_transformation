@@ -1,4 +1,4 @@
-module ValueGraphTransformation
+module ValueGraphTransformation::Graph
 
   # A directed edge between two vertices.
   class Edge
