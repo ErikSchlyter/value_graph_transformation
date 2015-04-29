@@ -18,10 +18,6 @@ module ValueGraphTransformation::Graph
       it "should add the vertex to its list of vertices" do
         expect(graph.vertices).to match [graph.add]
       end
-
-      it "should store the given meta object in the vertex" do
-        expect(graph.add("foo").meta).to eq "foo"
-      end
     end
 
     describe "#connect" do
@@ -41,10 +37,6 @@ module ValueGraphTransformation::Graph
       it "should add the edge on the target list of the source vertex" do
         edge = graph.connect(a, b)
         expect(a.targets).to match [edge]
-      end
-
-      it "should store the given meta object in the edge " do
-        expect(graph.connect(a, b, "foo").meta).to eq "foo"
       end
 
       it "should fail if source not part of the graph" do
@@ -91,13 +83,8 @@ module ValueGraphTransformation::Graph
     describe "#to_dot" do
 
       it "should return a String in valid dot format" do
-        graph = Graph.new
-        a = graph.add('a node')
-        b = graph.add('another node')
-        c = graph.add
-
-        graph.connect(a, b, "Hello")
-        graph.connect(a, b, "World!")
+        graph.connect(a, b)
+        graph.connect(a, b)
         graph.connect(c, a)
         graph.connect(a, c)
 

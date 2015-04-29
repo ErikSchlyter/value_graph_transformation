@@ -15,29 +15,24 @@ module ValueGraphTransformation::Graph
       @edges = []
     end
 
-    # Creates a new vertex with the optional meta object associated to it, and adds
-    # it to the graph.
-    #
-    # @param meta [Object] the meta object to associate with the new vertex.
+    # Adds a vertex to the graph.
+    # @param vertex [Vertex] the vertex to add
     # @return [Vertex] the newly created Vertex.
-    def add(meta=nil)
-      vertex = Vertex.new(meta)
+    def add(vertex=Vertex.new)
       @vertices << vertex
       vertex
     end
 
-    # Creates an edge between two vertices and associates an optional meta object to
-    # it.
+    # Creates an edge between two vertices.
     #
     # @param source [Vertex] the source vertex
     # @param target [Vertex] the target vertex
-    # @param meta [Object] the meta object associated with this edge.
     # @return [Edge] the newly created Edge between the two vertices.
-    def connect(source, target, meta=nil)
+    def connect(source, target)
       fail "'#{source.to_s}' not part of the graph" unless vertices.include?(source)
       fail "'#{target.to_s}' not part of the graph" unless vertices.include?(target)
 
-      edge = Edge.new(source, target, meta)
+      edge = Edge.new(source, target)
       source.targets << edge
       target.sources << edge
       @edges << edge
@@ -64,16 +59,14 @@ module ValueGraphTransformation::Graph
     # @return [String] the graph in DOT format.
     def to_dot
       nodes = {}
-      @vertices.each_with_index{|vertex, index| nodes[vertex] = "n#{index}" }
+      @vertices.each_with_index{|vertex, index| nodes[vertex] = "#{index}" }
 
       dot = "digraph {\n"
 
-      dot << nodes.collect{|vertex, id|
-        "\t#{id} [label=\"#{vertex.meta.to_s}\"]"
-      }.join("\n") << "\n"
+      dot << nodes.values.collect{|id| "\t#{id}\n"}.join
 
       dot << @edges.collect{|edge|
-        "\t#{nodes[edge.source]}->#{nodes[edge.target]} [label=\"#{edge.meta.to_s}\"]"
+        "\t#{nodes[edge.source]}->#{nodes[edge.target]}"
       }.join("\n")
 
       dot << "\n}\n"

@@ -9,12 +9,7 @@ module ValueGraphTransformation::Graph
     # @return [Array<Edge>]
     attr_reader :sources
 
-    # @return [Object] the meta object associated with this vertex.
-    attr_reader :meta
-
-    # @param meta [Object] the meta object associated with this vertex.
-    def initialize(meta=nil)
-      @meta = meta
+    def initialize()
       @targets = []
       @sources = []
     end
