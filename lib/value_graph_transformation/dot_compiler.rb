@@ -81,7 +81,6 @@ module ValueGraphTransformation
     def graph_properties
       {
         'rankdir' => 'LR',
-        'dpi'     => 55,
       }
     end
 
@@ -92,7 +91,8 @@ module ValueGraphTransformation
         'label' => function.symbol,
         'shape' => 'square',
         'style' => 'filled',
-        'gradientangle' => 45
+        'width' => 0.3,
+        'height' => 0.3
       }
     end
 
@@ -103,7 +103,9 @@ module ValueGraphTransformation
         'label' => value.identifiers.join(','),
         'shape' => (value.identifiers.empty?) ? 'circle' : 'oval',
         'style' => 'filled',
-        'gradientangle' => 45
+        'gradientangle' => 45,
+        'width' => 0.3,
+        'height' => 0.3
       }
     end
 
