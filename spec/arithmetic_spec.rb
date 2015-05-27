@@ -11,12 +11,14 @@ module ValueGraphTransformation
         it "creates a function and returns the result node" do
           result = function
 
-          dot = DotCompiler.new(context)
-          dot.select( [result.sources[0].source], "the function node", "#00FFC0")
-          dot.select( [result], "the result node", "#00C0FF")
+          dot_compiler = DotCompiler.new(context)
+          dot_compiler.select( [result.sources[0].source], "the function node", "#00FFC0")
+          dot_compiler.select( [result], "the result node", "#00C0FF")
 
           expect(result).to be_a(Value)
-          illustrate dot.to_s
+
+          dot = dot_compiler.to_dot
+          illustrate dot, :html=>dot_compiler.to_svg(dot)
         end
       end
 
