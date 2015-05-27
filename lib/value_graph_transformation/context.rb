@@ -48,7 +48,7 @@ module ValueGraphTransformation
 
     # return [String] the context in dot code.
     def to_dot
-      DotCompiler.new(self).to_s
+      DotCompiler.new(self).to_dot
     end
   end
 end

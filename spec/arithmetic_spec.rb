@@ -18,7 +18,7 @@ module ValueGraphTransformation
           expect(result).to be_a(Value)
 
           dot = dot_compiler.to_dot
-          illustrate dot, :html=>dot_compiler.to_svg(dot)
+          illustrate dot, :html=>DotCompiler.to_svg(dot)
         end
       end
 
@@ -43,15 +43,18 @@ module ValueGraphTransformation
       end
     end
 
-    describe "#apply" do
-      it "should apply arithmetic operations in the given block to the context" do
-        context = Context.new
-        result = Arithmetic.apply(context) {
-          add(mul(7, 'x'), sub('a', div('42', 'y')), sum(['z', 47, 'u']))
-        }
+    describe ValueGraphTransformation::Arithmetic do
+      describe ".apply" do
+        it "should apply arithmetic operations in the given block to the context" do
+          context = Context.new
+          result = Arithmetic.apply(context) {
+            add(mul(7, 'x'), sub('a', div('42', 'y')), sum(['z', 47, 'u']))
+          }
 
-        illustrate context.to_dot
-        expect(result).to eq(context)
+          dot = context.to_dot
+          illustrate dot, :html=>DotCompiler.to_svg(dot)
+          expect(result).to eq(context)
+        end
       end
     end
   end

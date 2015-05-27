@@ -26,10 +26,16 @@ module ValueGraphTransformation
       @selections << Selection.new(vertices, text, color)
     end
 
-    # @param dot [String] an optional string in dot format.
-    # @return [String] the Context compiled into an svg image
+    # @return [String] the Context compiled into an SVG element
     # @raise [Error] if GraphViz is not installed on host.
-    def to_svg(dot=to_dot)
+    def to_svg
+      DotCompiler.to_svg(to_dot)
+    end
+
+    # @param dot [String] the string in dot format to compile.
+    # @return [String] the given string compiled into an SVG element.
+    # @raise [Error] if GraphViz is not installed on host.
+    def self.to_svg(dot)
       svg = nil
       fail_msg = nil
       begin
@@ -45,6 +51,9 @@ module ValueGraphTransformation
       end
 
       raise fail_msg unless fail_msg == ""
+
+      # crop the header
+      svg.sub!(/.*\n/, '') until svg.start_with?("<svg ")
 
       return svg
     end
@@ -142,6 +151,7 @@ module ValueGraphTransformation
     def graph_properties
       {
         'rankdir' => 'LR',
+        'bgcolor' => '#FFFFFF00'
       }
     end
 

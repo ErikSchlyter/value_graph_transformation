@@ -131,7 +131,7 @@ module ValueGraphTransformation
         illustrate expected, :label=>"The expected string:"
 
         actual = compiler.propertify(hash)
-        illustrate actual, :show_when_passed=>false
+        illustrate actual.inspect, :show_when_passed=>false
 
         expect(actual).to eq(expected)
       end
@@ -148,7 +148,7 @@ module ValueGraphTransformation
 
     describe "#graph_properties" do
       example "returns a Hash with the properties of the digraph element" do
-        illustrate compiler.graph_properties
+        illustrate compiler.graph_properties.inspect
         expect(compiler.graph_properties).to be_a(Hash)
       end
     end
