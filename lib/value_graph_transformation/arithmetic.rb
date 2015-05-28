@@ -9,7 +9,7 @@ module ValueGraphTransformation
     # @param arithmetic [Proc] the block to be invoked in the context of a
     #                          ArithmeticFunctionFactory.
     # @return [Context] the context in which the arithmetic operations were applied.
-    def self.apply(context, &arithmetic)
+    def self.apply(context=Context.new, &arithmetic)
       ArithmeticFunctionFactory.new(context).instance_eval &arithmetic
       context
     end

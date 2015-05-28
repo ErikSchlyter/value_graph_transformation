@@ -50,14 +50,40 @@ module ValueGraphTransformation
       include IllustrationCompiler
 
       describe ".apply" do
-        it "should apply arithmetic operations in the given block to the context" do
-          context = Context.new
-          result = Arithmetic.apply(context) {
-            add(mul(7, 'x'), sub('a', div('42', 'y')), sum(['z', 47, 'u']))
+        example "It returns a Context" do
+          expect(Arithmetic.apply {} ).to be_a(Context)
+        end
+        example "The block is executed within the scope of ArithmeticFunctionFactory." do
+          prc = lambda {
+            Arithmetic.apply {
+              add(mul(7, 'x'), sub('a', div('42', 'y')), sum(['z', 47, 'u']))
+            }
           }
 
+          context = prc.call
+
+          illustrate prc
           illustrate context
-          expect(result).to eq(context)
+          expect(context).to be_a(Context)
+        end
+
+        example "It applies the block operations to the given context" do
+          prc = lambda {
+            context = Arithmetic.apply {
+              add(1337, 42, 'z')
+            }
+
+            Arithmetic.apply(context) {
+              mul('x', 'y', 'z')
+            }
+          }
+
+          context = prc.call
+
+          illustrate prc
+          illustrate context
+          expect(context).to be_a(Context)
+          expect(context.vertices.size).to eq(7)
         end
       end
     end
