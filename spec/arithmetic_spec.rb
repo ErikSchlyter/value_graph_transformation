@@ -1,11 +1,15 @@
 require 'rspec/illustrate'
 require 'value_graph_transformation'
+require 'spec_helper'
 
 module ValueGraphTransformation
   module Arithmetic
 
     describe ArithmeticFunctionFactory do
+      include IllustrationCompiler
+
       shared_examples "a function factory" do
+
         let!(:context) { Context.new }
         let!(:factory) { ArithmeticFunctionFactory.new(context) }
         it "creates a function and returns the result node" do
@@ -17,8 +21,7 @@ module ValueGraphTransformation
 
           expect(result).to be_a(Value)
 
-          dot = dot_compiler.to_dot
-          illustrate dot, :html=>DotCompiler.to_svg(dot)
+          illustrate dot_compiler
         end
       end
 
@@ -44,6 +47,8 @@ module ValueGraphTransformation
     end
 
     describe ValueGraphTransformation::Arithmetic do
+      include IllustrationCompiler
+
       describe ".apply" do
         it "should apply arithmetic operations in the given block to the context" do
           context = Context.new
@@ -51,8 +56,7 @@ module ValueGraphTransformation
             add(mul(7, 'x'), sub('a', div('42', 'y')), sum(['z', 47, 'u']))
           }
 
-          dot = context.to_dot
-          illustrate dot, :html=>DotCompiler.to_svg(dot)
+          illustrate context
           expect(result).to eq(context)
         end
       end

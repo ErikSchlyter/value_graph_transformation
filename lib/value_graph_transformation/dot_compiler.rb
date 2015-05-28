@@ -52,9 +52,6 @@ module ValueGraphTransformation
 
       raise fail_msg unless fail_msg == ""
 
-      # crop the header
-      svg.sub!(/.*\n/, '') until svg.start_with?("<svg ")
-
       return svg
     end
 
