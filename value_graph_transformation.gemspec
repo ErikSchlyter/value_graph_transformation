@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{A simple framework for DAG manipulation.}
   spec.description   = %q{A simple framework for DAG manipulation.}
-  spec.homepage      = "https://github.com/ErikSchlyter/value_graph_transformation"
+  spec.homepage      = "http://www.erisc.se/value_graph_transformation"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
