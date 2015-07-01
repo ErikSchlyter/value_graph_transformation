@@ -1,4 +1,4 @@
-# ValueGraphTransformation
+# Value Graph Transformation
 
 A simple framework for manipulating Directed Acyclic Graphs (DAG) for the use of
 transforming models of functions and values.
