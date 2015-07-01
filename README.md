@@ -3,6 +3,10 @@
 A simple framework for manipulating Directed Acyclic Graphs (DAG) for the use of
 transforming models of functions and values.
 
+Source code at [https://github.com/ErikSchlyter/value_graph_transformation](https://github.com/ErikSchlyter/value_graph_transformation).
+
+Documentation at [http://www.erisc.se/value_graph_transformation](http://www.erisc.se/value_graph_transformation).
+
 It is written in Ruby and uses [Bundler](http://bundler.io/) for dependency
 management. After checking out the repo, run `bin/setup` to install
 dependencies.
