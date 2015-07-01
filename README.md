@@ -3,34 +3,13 @@
 A simple framework for manipulating Directed Acyclic Graphs (DAG) for the use of
 transforming models of functions and values.
 
-## Installation
+It is written in Ruby and uses [Bundler](http://bundler.io/) for dependency
+management. After checking out the repo, run `bin/setup` to install
+dependencies.
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'value_graph_transformation'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install value_graph_transformation
-
-To generate diagrams for the specs in HTML format (`rake doc`) you also need to
-install [Graphviz](http://www.graphviz.org).
-
-## Usage
-
-Not finished as of yet.
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release` to create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Execute `bundle exec rake doc` to generate specs and documentation. To generate
+the diagrams for the specs in HTML format you also need to install
+[Graphviz](http://www.graphviz.org).
 
 ## Contributing
 
