@@ -17,7 +17,17 @@ module ValueGraphTransformation::Graph
     # @param source [Vertex]
     # @return [Boolean] true, iff the given vertex matches any of the node's sources.
     def contain_source?(source)
-      sources.any?{|node| node.source == source }
+      source_vertices.include?(source)
+    end
+
+    # @return Array<Vertex> the source vertices
+    def source_vertices
+      sources.collect{|edge| edge.source }
+    end
+
+    # @return Array<Vertex> the target vertices
+    def target_vertices
+      targets.collect{|edge| edge.target }
     end
 
   end
