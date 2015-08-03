@@ -7,15 +7,6 @@ module ValueGraphTransformation::Graph
     let(:a) { graph.add }
     let(:b) { graph.add }
 
-    describe "#contain_source?" do
-      it "Returns true if the given node matches any of the node's sources" do
-        graph.connect(a, b)
-
-        expect(b.contain_source?(a)).to be true
-        expect(a.contain_source?(b)).to be false
-      end
-    end
-
     describe "#source_vertices" do
       it "returns a list of the source vertices" do
         graph.connect(a, b)
