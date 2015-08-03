@@ -14,5 +14,11 @@ module ValueGraphTransformation::Graph
       @sources = []
     end
 
+    # @param source [Vertex]
+    # @return [Boolean] true, iff the given vertex matches any of the node's sources.
+    def contain_source?(source)
+      sources.any?{|node| node.source == source }
+    end
+
   end
 end
