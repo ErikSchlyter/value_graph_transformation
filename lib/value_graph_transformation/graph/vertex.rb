@@ -14,12 +14,12 @@ module ValueGraphTransformation::Graph
       @sources = []
     end
 
-    # @return Array<Vertex> the source vertices
+    # @return [Array<Vertex>] the source vertices
     def source_vertices
       sources.collect{|edge| edge.source }
     end
 
-    # @return Array<Vertex> the target vertices
+    # @return [Array<Vertex>] the target vertices
     def target_vertices
       targets.collect{|edge| edge.target }
     end

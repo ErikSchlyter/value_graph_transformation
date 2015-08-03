@@ -97,6 +97,12 @@ module ValueGraphTransformation
       def symbol
         "+"
       end
+
+      # @return [Class, Array<Vertex>, Array<Vertex>] the inverse function and its parameters
+      def inverse_to(source)
+        fail "Function does not contain given source" unless source_vertices.include?(source)
+        [Sub, target_vertices + source_vertices - [source], [source]]
+      end
     end
 
     # Subtraction
@@ -104,6 +110,17 @@ module ValueGraphTransformation
       # @return [String] the symbol that represents this function.
       def symbol
         "-"
+      end
+
+      # @return [Class, Array<Vertex>, Array<Vertex>] the inverse function and its parameters
+      def inverse_to(source)
+        if source == source_vertices[0] then
+          [Add, source_vertices - [source] + target_vertices, [source]]
+        elsif source == source_vertices[1] then
+          [Sub, source_vertices - [source] + target_vertices, [source]]
+        else
+          fail "Function does not contain given source"
+        end
       end
     end
 
@@ -113,6 +130,12 @@ module ValueGraphTransformation
       def symbol
         "&times;"
       end
+
+      # @return [Class, Array<Vertex>, Array<Vertex>] the inverse function and its parameters
+      def inverse_to(source)
+        fail "Function does not contain given source" unless source_vertices.include?(source)
+        [Div, target_vertices + source_vertices - [source], [source]]
+      end
     end
 
     # Division
@@ -120,6 +143,17 @@ module ValueGraphTransformation
       # @return [String] the symbol that represents this function.
       def symbol
         "&#247;"
+      end
+
+      # @return [Class, Array<Vertex>, Array<Vertex>] the inverse function and its parameters
+      def inverse_to(source)
+        if source == source_vertices[0] then
+          [Mul, source_vertices - [source] + target_vertices, [source]]
+        elsif source == source_vertices[1] then
+          [Div, source_vertices - [source] + target_vertices, [source]]
+        else
+          fail "Function does not contain given source"
+        end
       end
     end
 
