@@ -101,7 +101,8 @@ module ValueGraphTransformation
       # @return [Class, Array<Vertex>, Array<Vertex>] the inverse function and its parameters
       def inverse_to(source)
         fail "Function does not contain given source" unless source_vertices.include?(source)
-        [Sub, target_vertices + source_vertices - [source], [source]]
+        other_source = source_vertices - [source]
+        [Sub, target_vertices + other_source, [source]]
       end
     end
 
@@ -114,10 +115,11 @@ module ValueGraphTransformation
 
       # @return [Class, Array<Vertex>, Array<Vertex>] the inverse function and its parameters
       def inverse_to(source)
+        other_source = source_vertices - [source]
         if source == source_vertices[0] then
-          [Add, source_vertices - [source] + target_vertices, [source]]
+          [Add, other_source + target_vertices, [source]]
         elsif source == source_vertices[1] then
-          [Sub, source_vertices - [source] + target_vertices, [source]]
+          [Sub, other_source + target_vertices, [source]]
         else
           fail "Function does not contain given source"
         end
@@ -134,7 +136,8 @@ module ValueGraphTransformation
       # @return [Class, Array<Vertex>, Array<Vertex>] the inverse function and its parameters
       def inverse_to(source)
         fail "Function does not contain given source" unless source_vertices.include?(source)
-        [Div, target_vertices + source_vertices - [source], [source]]
+        other_source = source_vertices - [source]
+        [Div, target_vertices + other_source, [source]]
       end
     end
 
@@ -147,10 +150,11 @@ module ValueGraphTransformation
 
       # @return [Class, Array<Vertex>, Array<Vertex>] the inverse function and its parameters
       def inverse_to(source)
+        other_source = source_vertices - [source]
         if source == source_vertices[0] then
-          [Mul, source_vertices - [source] + target_vertices, [source]]
+          [Mul, other_source + target_vertices, [source]]
         elsif source == source_vertices[1] then
-          [Div, source_vertices - [source] + target_vertices, [source]]
+          [Div, other_source + target_vertices, [source]]
         else
           fail "Function does not contain given source"
         end
